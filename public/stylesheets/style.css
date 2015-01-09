@@ -1,0 +1,37 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+table, tr, td, #add_task_btn{
+	width: 50%;
+	table-layout: fixed;
+}
+
+tr:nth-child(even) {
+	background-color: whitesmoke;
+}
+
+input {
+	width: 100%
+}
+
+input[type="submit"] {
+	margin-top:20px;
+}
+
+.delete_task_btn {
+	background-color: red;
+	color:white;
+	width: 100%;
+}
+
+.submit_error_div {
+	background-color: pink;
+	color: red;
+	font: 14px monospace;
+}

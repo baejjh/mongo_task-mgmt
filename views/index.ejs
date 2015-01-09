@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+ <head>
+ 	<meta charset="utf-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+ </head>
+ <body>
+    <h1><%= title %></h1>
+
+    <h3>Tasks</h3>
+    <% if(my_tasks.length !== 0) { %>
+		<table>
+		<th>
+		<tr>
+			<td>Tasks</td>
+			<td>Priority</td>
+			<td>Deadline</td>
+			<td>Action</td>
+		</tr>
+		</th>
+
+		<% 	for(var i = 0; i < my_tasks.length; i++){ %>
+		<tr>
+		    <td><%= my_tasks[i].name %></td>
+		    <td><%= my_tasks[i].priority %></td>
+		    <td><%= my_tasks[i].deadline %></td>
+		    <td><form action='/this_task/destroy' method='post'>
+					<input type='submit' value='remove' class="delete_task_btn" >
+					<input type='hidden' name='id' class="delete_task_btn" value=<%= my_tasks[i]._id %>>
+				</form>
+			</td>
+		</tr>
+		<% } %>
+	</table>
+	<% } else { %>
+		<p>You currently have no tasks.</p>
+	<% } %>
+
+    <h3>Add a New Task</h3>
+
+    <!-- Display error message from Mongoose to View: http://stackoverflow.com/questions/21460085/how-to-display-mongoose-error-to-backbone-views
+    % if(submit_error.length !== 0) { %>
+    	div class="submit_error_div">% submit_error %>/div>
+    % } %> -->
+    <form action="/this_task/create" method="post">
+		<table>
+		<th><tr>
+			<td>Tasks</td>
+			<td><input type="text" name="name" placeholder="Enter Your Task"></td>
+		</th></tr>
+		<tr>
+			<td>Priority</td>
+			<td>
+			<select name="priority">
+				<option value="">Select the Priority Level</option>
+				<option value="low">Low</option>
+				<option value="medium">Medium</option>
+				<option value="high">High</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Deadline</td>
+			<td><input type="date" name="deadline" placeholder="MM/DD/YYYY"></td>
+		</tr>
+		</table>
+		<input type="submit" id="add_task_btn" value="Submit a New Task">
+    </form>
+ </body>
+</html>
