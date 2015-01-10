@@ -7,9 +7,14 @@ a {
   color: #00B7FF;
 }
 
-table, tr, td, #add_task_btn{
+table, tr, td {
 	width: 50%;
-	table-layout: fixed;
+	table-layout: fixed; /*make columns the same width*/
+	margin: 0px auto;
+}
+
+h3 {
+	text-align: center;
 }
 
 tr:nth-child(even) {
@@ -17,17 +22,22 @@ tr:nth-child(even) {
 }
 
 input {
-	width: 100%
+	width: 100%;
+	margin: 0px auto; /*horizontal alignment*/
 }
 
-input[type="submit"] {
-	margin-top:20px;
-}
-
-.delete_task_btn {
+input.delete_task_btn {
 	background-color: red;
 	color:white;
 	width: 100%;
+}
+
+input.add_task_btn {
+	display: block; /*NEED THIS FOR MARGIN TO WORK*/
+	margin: 0px auto; /*horizontal alignment*/
+	background-color: green;
+	width: 50%;
+	color: white;
 }
 
 .submit_error_div {
