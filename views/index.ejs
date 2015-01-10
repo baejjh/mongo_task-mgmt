@@ -38,10 +38,11 @@
 
     <h3>Add a New Task</h3>
 
-    <!-- Display error message from Mongoose to View: http://stackoverflow.com/questions/21460085/how-to-display-mongoose-error-to-backbone-views
-    % if(submit_error.length !== 0) { %>
-    	div class="submit_error_div">% submit_error %>/div>
-    % } %> -->
+   	<% if (print_errors !== 0) { %>
+
+    <% for(var i = 0; i < print_errors.length; i++){ %>
+    	<div class="submit_error_div"><% print_errors[i] %></div>
+    <% } } %>
     <form action="/this_task/create" method="post">
 		<table>
 		<th><tr>

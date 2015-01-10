@@ -3,21 +3,38 @@ var mongoose = require('mongoose'),
 
 module.exports = function Routes(app) {
 	app.get('/', function(req, res) { 
+		// Get All Tasks
 		taskManagement.find(function(err, tasks) {
-			if(err)
-				return console.error(err);  
+			// finding tasks in db
+			console.log(err);
+			if(err) {
+				console.log(err);
+			}
 			res.render('index', {
 				title: 'List of Tasks',
 				my_tasks: tasks,
+				print_errors: 0,
 			});
 		});
 	});
 	
 	app.post('/this_task/create', function(req, res) {
-		var a = new taskManagement(req.body);
-		a.save(function(err, a) {
-			console.log(err, a);
-			res.redirect('/');
+		// adding new task in db
+		var submitted_task = new taskManagement(req.body);
+		submitted_task.save(function(err, submitted_task) {
+			if (err) {
+				var input_errors = err.errors;
+				console.log(input_errors);
+				// Get All Tasks
+				var get_all_tasks = taskManagement.find(function(err, tasks) {
+					return tasks;
+				});
+			res.render('index', {
+				title:"WIN",
+				my_tasks: get_all_tasks,
+				print_errors: input_errors
+			});
+			} else { res.redirect('/'); }
 		});
 	});
 
